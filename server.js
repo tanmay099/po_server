@@ -71,6 +71,12 @@ function getPost(){
       return posts.posts;
 }
 
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('/', function(request, response) {
+  response.sendFile(__dirname + '../dist/index.html');
+});
+
 app.get('/posts', cors(), (req, res) => {
     const fs = require('fs');
 let rawdata = fs.readFileSync('posts.json');
